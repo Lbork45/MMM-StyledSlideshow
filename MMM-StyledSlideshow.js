@@ -1,17 +1,16 @@
 Module.register("MMM-StyledSlideshow", {
 
   defaults: {
-    exampleContent: ""
+    imageFolder: "/images",
+    scrollInterval: 3000,
   },
 
-  /**
-   * Pseudo-constructor for our module. Initialize stuff here.
-   */
   start() {
-    this.templateContent = this.config.exampleContent
+    this.imageFolder = this.config.imageFolder
+    this.scrollInterval = this.config.scrollInterval
 
     // set timeout for next random text
-    setInterval(() => this.addRandomText(), 3000)
+    setInterval(() => this.changeImage(), this.scrollInterval)
   },
 
   /**
@@ -22,8 +21,7 @@ Module.register("MMM-StyledSlideshow", {
    * @param {any} payload - The payload data`returned by the node helper.
    */
   socketNotificationReceived: function (notification, payload) {
-    if (notification === "EXAMPLE_NOTIFICATION") {
-      this.templateContent = `${this.config.exampleContent} ${payload.text}`
+    if (notification === "NEXT_PICTURE") {
       this.updateDom()
     }
   },
@@ -38,8 +36,8 @@ Module.register("MMM-StyledSlideshow", {
     return wrapper
   },
 
-  addRandomText() {
-    this.sendSocketNotification("GET_RANDOM_TEXT", { amountCharacters: 15 })
+  changeImage() {
+    this.sendSocketNotification("CHANGE_IMAGE")
   },
 
   /**
@@ -50,7 +48,6 @@ Module.register("MMM-StyledSlideshow", {
    */
   notificationReceived(notification, payload) {
     if (notification === "TEMPLATE_RANDOM_TEXT") {
-      this.templateContent = `${this.config.exampleContent} ${payload}`
       this.updateDom()
     }
   }
