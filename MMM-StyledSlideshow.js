@@ -1,16 +1,18 @@
 Module.register("MMM-StyledSlideshow", {
 
   defaults: {
-    imageFolder: "/images",
+    imageFolder: "/example_images",
     scrollInterval: 3000,
   },
 
   start() {
     this.imageFolder = this.config.imageFolder
     this.scrollInterval = this.config.scrollInterval
+    this.imagePath = ""
 
     // set timeout for next random text
     setInterval(() => this.changeImage(), this.scrollInterval)
+    this.sendSocketNotification("CYCLE_PATHS", this.imageFolder)
   },
 
   /**
@@ -22,6 +24,7 @@ Module.register("MMM-StyledSlideshow", {
    */
   socketNotificationReceived: function (notification, payload) {
     if (notification === "NEXT_PICTURE") {
+      this.imagePath = payload
       this.updateDom()
     }
   },
@@ -31,13 +34,13 @@ Module.register("MMM-StyledSlideshow", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}`
+    wrapper.innerHTML = `<img src=${this.imagePath}>`
 
     return wrapper
   },
 
   changeImage() {
-    this.sendSocketNotification("CHANGE_IMAGE")
+    this.sendSocketNotification("NEXT_IMAGE")
   },
 
   /**
@@ -47,7 +50,8 @@ Module.register("MMM-StyledSlideshow", {
    * @param {number} payload the payload type.
    */
   notificationReceived(notification, payload) {
-    if (notification === "TEMPLATE_RANDOM_TEXT") {
+    if (notification === "CHANGE_IMAGE") {
+      this.sendSocketNotification("NEXT_IMAGE")
       this.updateDom()
     }
   }
