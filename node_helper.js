@@ -12,7 +12,7 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function(notification, payload) {
     if (notification === "NEXT_IMAGE") {
-      this.sendSocketNotification("NEXT_PICTURE", imagePaths[currentIndex]);
+      this.sendSocketNotification("NEXT_PICTURE", this.imagePaths[this.currentIndex]);
       this.currentIndex = (this.currentIndex + 1) % this.imagePaths.length;
     }
     else if (notification == "CYCLE_PATHS"){

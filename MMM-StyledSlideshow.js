@@ -34,7 +34,7 @@ Module.register("MMM-StyledSlideshow", {
    */
   getDom() {
     const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<img src=${this.imagePath}>`
+    wrapper.innerHTML = `<img src="${this.imagePath}">`
 
     return wrapper
   },
