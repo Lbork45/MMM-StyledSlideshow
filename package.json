@@ -1,0 +1,15 @@
+{
+  "name": "mmm-styledslideshow",
+  "version": "1.0.0",
+  "description": "A styled slideshow running from an image folder",
+  "main": "MMM-StyledSlideshow.js",
+  "keywords": [
+    "template"
+  ],
+  "author": "Luke Bork",
+  "license": "MIT",
+  "bugs": {
+    "url": "[GitHub url]/issues"
+  },
+  "homepage": "[GitHub url]#readme"
+}
