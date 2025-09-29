@@ -15,7 +15,7 @@ module.exports = NodeHelper.create({
   currentIndex: 0,
 
   start: function () {
-    console.log(`Starting node helper: ${this.name}`);
+    console.log("[MMM-StyledSlideshow]" + `Starting node helper: ${this.name}`);
   },
 
   socketNotificationReceived: function(notification, payload) {
@@ -32,6 +32,7 @@ module.exports = NodeHelper.create({
     fs.readdir(modulePath, (err, files) => {
       if (err) return console.error(err);
       this.imagePaths = files.map(f => folderPath + "/" + f);
+      console.log("[MMM-StyledSlideshow]" + this.imagePaths)
     });
   },
 })

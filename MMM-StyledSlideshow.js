@@ -8,10 +8,7 @@ Module.register("MMM-StyledSlideshow", {
   start() {
     this.imageFolder = this.config.imageFolder
     this.scrollInterval = this.config.scrollInterval
-    this.imagePath = ""
-
-    // set timeout for next random text
-    setInterval(() => this.changeImage(), this.scrollInterval)
+    this.imagePath = "/example_images/photo.jpg"
     this.sendSocketNotification("CYCLE_PATHS", this.imageFolder)
   },
 
@@ -26,6 +23,8 @@ Module.register("MMM-StyledSlideshow", {
     if (notification === "NEXT_PICTURE") {
       this.imagePath = payload
       this.updateDom()
+
+      setInterval(() => this.changeImage(), this.scrollInterval)
     }
   },
 
@@ -36,9 +35,8 @@ getDom() {
   const wrapper = document.createElement("div");
   const image = document.createElement("img");
   image.src = this.file(this.imagePath);
-  console.log(image.src)
-  image.alt = "Image in slideshow";
-  wrapper.appendChild(image)
+  image.alt = this.imagePath + " error loading";
+  wrapper.appendChild(image);
   return wrapper;
 },
 
