@@ -37,7 +37,7 @@ Minimal configuration to use the module:
 ```js
     {
         module: 'MMM-StyledSlideshow',
-        position: 'lower_third'
+        position: 'middle_center'
     },
 ```
 
@@ -46,9 +46,9 @@ Configuration with all options:
 ```js
     {
         module: 'MMM-StyledSlideshow',
-        position: 'lower_third',
+        position: 'middle_center',
         config: {
-            imageFolder: '/my_images',
+            imageFolder: 'my_images',
             scrollInterval: 1000
         }
     },
@@ -58,8 +58,8 @@ Configuration with all options:
 
 Option|Possible values|Default|Description
 ------|------|------|-----------
-`imageFolder`|`string`|`/example_images`|The folder to draw images from
-`scrollInterval`|`integer`|`3000`|The rotation interval, in milliseconds
+`imageFolder`|`string`|`example_images`|The folder to draw images from. MUST be a subfolder of MMM-StyledSlideshow.
+`scrollInterval`|`integer`|`30000`|The rotation interval, in milliseconds
 
 ## Sending notifications to the module
 

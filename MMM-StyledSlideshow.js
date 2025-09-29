@@ -1,8 +1,8 @@
 Module.register("MMM-StyledSlideshow", {
 
   defaults: {
-    imageFolder: "/home/user/MagicMirror/modules/MMM-StyledSlideshow/example_images",
-    scrollInterval: 3000,
+    imageFolder: "example_images",
+    scrollInterval: 30000,
   },
 
   start() {
@@ -34,15 +34,11 @@ Module.register("MMM-StyledSlideshow", {
    */
 getDom() {
   const wrapper = document.createElement("div");
-  if (!this.imagePath) {
-    wrapper.innerHTML = "<div>No image yet</div>";
-  } else {
-    // this.file() will output:
-    // /modules/MMM-StyledSlideshow/example_images/photo.jpg
-    const url = this.file(this.imagePath);
-    wrapper.innerHTML = 
-      `<img src="${url}" style="max-width:100%; height:auto;" alt="slide">`;
-  }
+  const image = document.createElement("img");
+  image.src = this.file(this.imagePath);
+  console.log(image.src)
+  image.alt = "Image in slideshow";
+  wrapper.appendChild(image)
   return wrapper;
 },
 
