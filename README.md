@@ -58,13 +58,14 @@ Configuration with all options:
 
 Option|Possible values|Default|Description
 ------|------|------|-----------
-`imageFolder`|`string`|`/images`|The folder to draw images from
+`imageFolder`|`string`|`/example_images`|The folder to draw images from
 `scrollInterval`|`integer`|`3000`|The rotation interval, in milliseconds
 
 ## Sending notifications to the module
 
 Notification|Description
 ------|-----------
+CHANGE_IMAGE|Change the current image
 
 ## License
 

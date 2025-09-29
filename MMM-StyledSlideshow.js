@@ -1,16 +1,18 @@
 Module.register("MMM-StyledSlideshow", {
 
   defaults: {
-    imageFolder: "/images",
+    imageFolder: "/home/user/MagicMirror/modules/MMM-StyledSlideshow/example_images",
     scrollInterval: 3000,
   },
 
   start() {
     this.imageFolder = this.config.imageFolder
     this.scrollInterval = this.config.scrollInterval
+    this.imagePath = ""
 
     // set timeout for next random text
     setInterval(() => this.changeImage(), this.scrollInterval)
+    this.sendSocketNotification("CYCLE_PATHS", this.imageFolder)
   },
 
   /**
@@ -22,6 +24,7 @@ Module.register("MMM-StyledSlideshow", {
    */
   socketNotificationReceived: function (notification, payload) {
     if (notification === "NEXT_PICTURE") {
+      this.imagePath = payload
       this.updateDom()
     }
   },
@@ -29,15 +32,24 @@ Module.register("MMM-StyledSlideshow", {
   /**
    * Render the page we're on.
    */
-  getDom() {
-    const wrapper = document.createElement("div")
-    wrapper.innerHTML = `<b>Title</b><br />${this.templateContent}`
+getDom() {
+  const wrapper = document.createElement("div");
+  if (!this.imagePath) {
+    wrapper.innerHTML = "<div>No image yet</div>";
+  } else {
+    // this.file() will output:
+    // /modules/MMM-StyledSlideshow/example_images/photo.jpg
+    const url = this.file(this.imagePath);
+    wrapper.innerHTML = 
+      `<img src="${url}" style="max-width:100%; height:auto;" alt="slide">`;
+  }
+  return wrapper;
+},
 
-    return wrapper
-  },
+
 
   changeImage() {
-    this.sendSocketNotification("CHANGE_IMAGE")
+    this.sendSocketNotification("NEXT_IMAGE")
   },
 
   /**
@@ -47,7 +59,8 @@ Module.register("MMM-StyledSlideshow", {
    * @param {number} payload the payload type.
    */
   notificationReceived(notification, payload) {
-    if (notification === "TEMPLATE_RANDOM_TEXT") {
+    if (notification === "CHANGE_IMAGE") {
+      this.sendSocketNotification("NEXT_IMAGE")
       this.updateDom()
     }
   }
