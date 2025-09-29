@@ -28,17 +28,10 @@ module.exports = NodeHelper.create({
     }
   },
   cycleFiles: function(folderPath){
-    fs.readdir(folderPath, (err, files) => {
-      if (err){
-        console.error("Error reading folder");
-        return;
-      }
-      const fileList = files.filter(file => fs.statSync(path.join(folderPath, file)).isFile());
-      fileList.forEach((filename, index) => {
-        const fullPath = path.resolve(folderPath, filename);
-        console.log(`[${this.name}] fullPath:`, fullPath);
-        this.imagePaths.push(fullPath)
-      })
-    })
+    const modulePath = path.join(__dirname, folderPath);
+    fs.readdir(modulePath, (err, files) => {
+      if (err) return console.error(err);
+      this.imagePaths = files.map(f => folderPath + "/" + f);
+    });
   },
 })
