@@ -25,10 +25,12 @@ module.exports = NodeHelper.create({
       this.currentIndex = (this.currentIndex + 1) % this.imagePaths.length;
     }
     else if (notification == "GET_PATHS"){
-      this.cycleFiles(payload);
+      this.getFiles(payload);
     }
   },
-  cycleFiles: function(folderPath){
+
+  getFiles: function(folderPath){
+    this.imagePaths = []
     const modulePath = path.join(__dirname, folderPath);
     fs.readdir(modulePath, (err, files) => {
       if (err) return console.error(err);

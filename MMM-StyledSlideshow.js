@@ -4,7 +4,7 @@ Module.register("MMM-StyledSlideshow", {
     imageFolder: "example_images",
     scrollInterval: 30000,
     width: 20,
-    height: 20
+    height: 20,
   },
 
   start() {
@@ -38,8 +38,9 @@ Module.register("MMM-StyledSlideshow", {
 getDom() {
   const wrapper = document.createElement("div");
   const image = document.createElement("img");
-  image.style.width = this.width + "%"
-  image.style.height = this.height + "%"
+  image.style.width = this.width + "%";
+  image.style.height = this.height + "%";
+  image.style.objectFit = "cover";
   image.src = this.file(this.imagePath);
   image.alt = this.imagePath + " error loading";
   wrapper.appendChild(image);
@@ -51,6 +52,11 @@ getDom() {
   changeImage() {
     this.sendSocketNotification("NEXT_IMAGE")
     console.log("[MMM-StyledSlideshow] - Changing Image")
+  },
+
+  refresh() {
+    this.sendSocketNotification("GET_PATHS", this.imageFolder)
+    this.updateDom(10000)
   },
 
   /**
