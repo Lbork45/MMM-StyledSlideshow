@@ -1,0 +1,8 @@
+.styled-slideshow-image {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.styled-slideshow-image.loaded {
+  opacity: 1;
+}
