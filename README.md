@@ -82,7 +82,6 @@ Option|Possible values|Default|Description
 Notification|Description
 ------|-----------
 CHANGE_IMAGE|Change the current image
-CHANGE_IMAGE|Change the current image
 
 ## License
 
