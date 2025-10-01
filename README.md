@@ -1,13 +1,9 @@
 # MMM-StyledSlideshow
 
 *MMM-StyledSlideshow* is a module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) that displays a slideshow of images at a regular interval.
-# MMM-StyledSlideshow
-
-*MMM-StyledSlideshow* is a module for [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror) that displays a slideshow of images at a regular interval.
 
 ## Screenshot
 
-![Example of MMM-StyledSlideshow](./example_1.png)
 ![Example of MMM-StyledSlideshow](./example_1.png)
 
 ## Installation
@@ -18,7 +14,6 @@ In your terminal, go to the modules directory and clone the repository:
 
 ```bash
 cd ~/MagicMirror/modules
-git clone https://github.com/Lbork45/MMM-StyledSlideshow.git
 git clone https://github.com/Lbork45/MMM-StyledSlideshow.git
 ```
 
@@ -43,8 +38,6 @@ Minimal configuration to use the module:
     {
         module: 'MMM-StyledSlideshow',
         position: 'middle_center'
-        module: 'MMM-StyledSlideshow',
-        position: 'middle_center'
     },
 ```
 
@@ -52,8 +45,6 @@ Configuration with all options:
 
 ```js
     {
-        module: 'MMM-StyledSlideshow',
-        position: 'middle_center',
         module: 'MMM-StyledSlideshow',
         position: 'middle_center',
         config: {
