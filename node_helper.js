@@ -15,12 +15,13 @@ module.exports = NodeHelper.create({
   currentIndex: 0,
 
   start: function () {
-    console.log(`Starting node helper: ${this.name}`);
+    console.log("[MMM-StyledSlideshow]" + `Starting node helper: ${this.name}`);
   },
 
   socketNotificationReceived: function(notification, payload) {
     if (notification === "NEXT_IMAGE") {
       this.sendSocketNotification("NEXT_PICTURE", this.imagePaths[this.currentIndex]);
+      console.log("[MMM-StyledSlideshow" + this.imagePaths[this.currentIndex])
       this.currentIndex = (this.currentIndex + 1) % this.imagePaths.length;
     }
     else if (notification == "CYCLE_PATHS"){
@@ -32,6 +33,7 @@ module.exports = NodeHelper.create({
     fs.readdir(modulePath, (err, files) => {
       if (err) return console.error(err);
       this.imagePaths = files.map(f => folderPath + "/" + f);
+      console.log("[MMM-StyledSlideshow]" + this.imagePaths)
     });
   },
 })
