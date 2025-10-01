@@ -1,4 +1,3 @@
-/* global __dirname */
 const NodeHelper = require("node_helper")
 const fs = require("fs")
 const path = require("path")

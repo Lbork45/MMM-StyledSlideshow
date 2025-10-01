@@ -50,8 +50,8 @@ getDom() {
 
 
 
-  changeImage(payload) {
-    this.sendSocketNotification("NEXT_IMAGE", payload)
+  changeImage() {
+    this.sendSocketNotification("NEXT_IMAGE")
     console.log("[MMM-StyledSlideshow] - Changing Image")
   },
 
@@ -68,7 +68,7 @@ getDom() {
    */
   notificationReceived(notification, payload) {
     if (notification === "CHANGE_IMAGE") {
-      this.changeImage(payload)
+      this.changeImage()
       this.updateDom(15000)
     }
   }
