@@ -1,3 +1,4 @@
+/* global Module */
 Module.register("MMM-StyledSlideshow", {
 
   defaults: {
@@ -59,8 +60,8 @@ getDom() {
 
 
 
-  changeImage() {
-    this.sendSocketNotification("NEXT_IMAGE")
+  changeImage(payload) {
+    this.sendSocketNotification("NEXT_IMAGE", payload)
     console.log("[MMM-StyledSlideshow] - Changing Image")
   },
 
@@ -77,7 +78,7 @@ getDom() {
    */
   notificationReceived(notification, payload) {
     if (notification === "CHANGE_IMAGE") {
-      this.changeImage()
+      this.changeImage(payload)
       this.updateDom(15000)
     }
   }
