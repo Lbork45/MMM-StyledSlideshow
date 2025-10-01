@@ -2,15 +2,20 @@ Module.register("MMM-StyledSlideshow", {
 
   defaults: {
     imageFolder: "example_images",
-    scrollInterval: 3000,
+    scrollInterval: 30000,
+    width: 20,
+    height: 20
   },
 
   start() {
     this.imageFolder = this.config.imageFolder
     this.scrollInterval = this.config.scrollInterval
+    this.width = this.config.width
+    this.height = this.config.height
     this.imagePath = ""
-    this.sendSocketNotification("CYCLE_PATHS", this.imageFolder)
-    setInterval(() => this.changeImage(), 3000)
+    this.sendSocketNotification("GET_PATHS", this.imageFolder)
+    setTimeout(() => this.changeImage(), 3000)
+    setInterval(() => this.changeImage(), this.scrollInterval)
   },
 
   /**
@@ -33,6 +38,8 @@ Module.register("MMM-StyledSlideshow", {
 getDom() {
   const wrapper = document.createElement("div");
   const image = document.createElement("img");
+  image.style.width = this.width + "%"
+  image.style.height = this.height + "%"
   image.src = this.file(this.imagePath);
   image.alt = this.imagePath + " error loading";
   wrapper.appendChild(image);

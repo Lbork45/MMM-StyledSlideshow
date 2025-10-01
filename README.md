@@ -49,7 +49,9 @@ Configuration with all options:
         position: 'middle_center',
         config: {
             imageFolder: 'my_images',
-            scrollInterval: 1000
+            scrollInterval: 1000,
+            width: 50,
+            height: 40,
         }
     },
 ```
@@ -60,6 +62,8 @@ Option|Possible values|Default|Description
 ------|------|------|-----------
 `imageFolder`|`string`|`example_images`|The folder to draw images from. MUST be a subfolder of MMM-StyledSlideshow.
 `scrollInterval`|`integer`|`30000`|The rotation interval, in milliseconds
+`width`|`integer`|`20`|The width of the image, in % of screen width
+`height`|`integer`|`20`|The height of the image, in % of screen height
 
 ## Sending notifications to the module
 
