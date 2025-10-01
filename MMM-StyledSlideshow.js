@@ -2,14 +2,15 @@ Module.register("MMM-StyledSlideshow", {
 
   defaults: {
     imageFolder: "example_images",
-    scrollInterval: 30000,
+    scrollInterval: 3000,
   },
 
   start() {
     this.imageFolder = this.config.imageFolder
     this.scrollInterval = this.config.scrollInterval
-    this.imagePath = "/example_images/photo.jpg"
+    this.imagePath = ""
     this.sendSocketNotification("CYCLE_PATHS", this.imageFolder)
+    setInterval(() => this.changeImage(), 3000)
   },
 
   /**
@@ -23,8 +24,6 @@ Module.register("MMM-StyledSlideshow", {
     if (notification === "NEXT_PICTURE") {
       this.imagePath = payload
       this.updateDom()
-
-      setInterval(() => this.changeImage(), this.scrollInterval)
     }
   },
 
@@ -44,6 +43,7 @@ getDom() {
 
   changeImage() {
     this.sendSocketNotification("NEXT_IMAGE")
+    console.log("[MMM-StyledSlideshow] - Changing Image")
   },
 
   /**
@@ -54,8 +54,8 @@ getDom() {
    */
   notificationReceived(notification, payload) {
     if (notification === "CHANGE_IMAGE") {
-      this.sendSocketNotification("NEXT_IMAGE")
-      this.updateDom()
+      this.changeImage()
+      this.updateDom(15000)
     }
   }
 })
