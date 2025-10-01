@@ -63,8 +63,8 @@ Option|Possible values|Default|Description
 `imageFolder`|`string`|`example_images`|The folder to draw images from. MUST be a subfolder of MMM-StyledSlideshow.
 `scrollInterval`|`integer`|`30000`|The rotation interval, in milliseconds
 `refreshInterval`|`integer`|`360000`|The interval on which the program reloads all pictures from the folder
-`width`|`integer`|`20`|The width of all pictures, in % of screen width
-`height`|`integer`|`20`|The height of all pictures, in % of screen height
+`width`|`integer`|`40`|The width of all pictures, in % of screen width
+`height`|`integer`|`40`|The height of all pictures, in % of screen height
 
 > As of now, the refreshInterval is a placeholder because of a bug I haven't figured out yet. If anyone wants to try, please fork the repo and once fixed, I will merge it. 
 

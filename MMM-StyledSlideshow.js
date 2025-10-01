@@ -3,8 +3,12 @@ Module.register("MMM-StyledSlideshow", {
   defaults: {
     imageFolder: "example_images",
     scrollInterval: 30000,
-    width: 20,
-    height: 20,
+    width: 40,
+    height: 40,
+  },
+
+  getStyles() {
+    return ["styles.css"];
   },
 
   start() {
@@ -38,9 +42,15 @@ Module.register("MMM-StyledSlideshow", {
 getDom() {
   const wrapper = document.createElement("div");
   const image = document.createElement("img");
+  image.onload = () => {
+    image.classList.add("loaded");
+  };
+  image.className = 'styled-slideshow-image'
   image.style.width = this.width + "%";
   image.style.height = this.height + "%";
   image.style.objectFit = "cover";
+  image.style.borderRadius = "30px";
+  image.style.border = "2px solid white"
   image.src = this.file(this.imagePath);
   image.alt = this.imagePath + " error loading";
   wrapper.appendChild(image);
