@@ -58,9 +58,9 @@ Configuration with all options:
         position: 'middle_center',
         config: {
             imageFolder: 'my_images',
-            scrollInterval: 1000
-            imageFolder: 'my_images',
-            scrollInterval: 1000
+            scrollInterval: 1000,
+            width: 50,
+            height: 40,
         }
     },
 ```

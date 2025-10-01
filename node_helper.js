@@ -24,7 +24,6 @@ module.exports = NodeHelper.create({
       console.log("[MMM-StyledSlideshow" + this.imagePaths[this.currentIndex])
       this.currentIndex = (this.currentIndex + 1) % this.imagePaths.length;
     }
-
     else if (notification == "GET_PATHS"){
       this.getFiles(payload);
     }

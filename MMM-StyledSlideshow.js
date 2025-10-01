@@ -3,7 +3,6 @@ Module.register("MMM-StyledSlideshow", {
   defaults: {
     imageFolder: "example_images",
     scrollInterval: 30000,
-    refreshInterval: 360000,
     width: 20,
     height: 20,
   },
@@ -14,8 +13,8 @@ Module.register("MMM-StyledSlideshow", {
     this.width = this.config.width
     this.height = this.config.height
     this.imagePath = ""
-    setTimeout(() => this.changeImage(), 3000)
     this.sendSocketNotification("GET_PATHS", this.imageFolder)
+    setTimeout(() => this.changeImage(), 3000)
     setInterval(() => this.changeImage(), this.scrollInterval)
   },
 
